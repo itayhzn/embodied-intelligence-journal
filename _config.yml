@@ -22,8 +22,8 @@ title: Embodied Intelligence Journal
 # email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   I've started this journal to document my journey in the field of embodied intelligence. I will be writing down my thoughts, ideas, and projects.
-baseurl: "/embodied-intelligence-journal/docs" # the subpath of your site, e.g. /blog
-url: "https://itayhzn.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://itayhzn.github.io/embodied-intelligence-journal" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
 github_username:  itayhzn
 
