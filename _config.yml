@@ -31,7 +31,7 @@ github_username:  itayhzn
 theme: minima
 plugins:
   - jekyll-feed
-  - jekyll-spaceship
+#  - jekyll-spaceship
 
 # Exclude from processing.
 # The following items will not be processed, by default.
