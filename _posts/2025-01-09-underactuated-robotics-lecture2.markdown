@@ -24,9 +24,9 @@ Following up on the previous lecture, we continue to explore the concept of unde
 </p>
 
 Developing the dynamics is relatively easy:
- - Kinetic Energy: $ T = \frac{1}{2} m \ell^2 \theta^2 $,
- - Potential Energy: $ V = -m g \ell \cos\theta $, where the reference point is the base of the pendulum.
- - The lagrangian: $ m\ell^2 \ddot{\theta} + mg\ell \sin \theta = Q $, where $Q$ is the generalized force.  
+ - Kinetic Energy: $ T = \frac{1}{2} m \ell^2 \theta^2 $
+ - Potential Energy: $ V = -m g \ell \cos\theta $ , where the reference point is the base of the pendulum.
+ - The lagrangian: $ m\ell^2 \ddot{\theta} + mg\ell \sin \theta = Q $ , where $Q$ is the generalized force.  
  - The generalized force $ Q $ will be the torque applied around the joint (pivot point). We will model two types of forces there: a torque due to damping (assume linear damping due to friction) and a motor torque. Therefore, $ Q = -b \dot{\theta} + u $.
 
 Thus, the dynamic equation becomes:
