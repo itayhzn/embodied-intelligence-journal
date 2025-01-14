@@ -68,4 +68,35 @@ To solve this formally, let's plot the phase portrait of $ \ddot q = u $ given t
   <img src="https://underactuated.csail.mit.edu/figures/double_integrator_mintime_orbits.svg">
 </p>
 
+In some way, minimum-time problems are like shortest-path problems (e.g. in graph search), thus we can use similar techniques to solve them. Consider, for instance, taking the phase portrait in the $ \dot q $ vs $ q$ plane, and make it "discrete" by discretizing the space into a grid. We can then use dynamic programming to find the optimal path from the initial state to the goal state.
+
+### Dynamic Programming
+Given discrete states $ s_i \in S $, discrete actions $ a_j \in A $, a transition/time function $ s[n+1] = f(s[n], a[n]) $, and an "edge cost" $ g(s,a) $, the total cost of some trajectory will be $ \sum_{n=0}^{N-1} g(s[n], a[n]) $.  The key idea here is that this is an **additive cost**. 
+
+For the *minimum time* cost, we can define the cost function as follows: $ g(s,a) = \mathbb{1}_{\{s \neq s_{\text{goal}}\}} $. This is the simplest cost function we can define for the minimum time problem.
+
+DP is a recursive algorithm that solves "backwards from the goal". We define the **cost-to-go** function $ J^* (s) $ (in RL terminology, the **value function**) as the minimum cost-to-go from state $ s $ to the goal. The cost-to-go function is defined as follows:
+
+$$ J^* (s_i) = \min_{\vec a [\cdot]} \sum_{n=0}^\infty g(s[n], a[n]) \;\; ; \; s[0] = s_i $$
+
+However, an easier to compute definition uses its recursive nature:
+
+$$ J^* (s_i) = \min_{a_i} \left[ g(s_i, a_i) + J^* (f(s_i, a_i)) \right] $$
+
+This definition is known as the **Bellman Equation**, and we can use this recursive definition as an algorithm to compute the cost-to-go function. We start from the goal state and work our way back to the initial state. This is the essence of dynamic programming.
+
+**The Dynamic Programming/Value Iteration Algorithm**:
+ - Let $ \hat{J}^* (s) $ be our estimate of the optimal cost-to-go function $ J^* (s) $.
+ - Initialize $ \hat{J}^* = 0 $.
+ - Repeat until convergence:
+   - For all $ s_i \neq s_{\text{goal}} $, update $ \hat{J}^* (s_i) = \min_{a_i} \left[ g(s_i, a_i) + \hat{J}^* (f(s_i, a_i)) \right] $.
+
+This algorithm is guaranteed to converge to the optimal cost-to-go function $ J^* (s) $.
+
+**Caveats**:
+ - Accuracy: due to discretization errors (and they build up). They are especially bad in systems that have discontinuities.
+ - Scalability: this only works if we can make a fine enough grid to approximate the continuous state space (dimensions ~ 5). This is known as the Bellman Curse of Dimensionality.
+ - Assumes model is known. 
+ - Assumes cost function is known.
+ - Assumes "full state" feedback, i.e. we know the full state of the system.
 
