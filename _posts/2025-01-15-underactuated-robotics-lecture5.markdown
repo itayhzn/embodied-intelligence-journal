@@ -21,10 +21,34 @@ In the previous lecture, we discussed dynamic programming in the discrete (tabul
 
 This lecture will focus on Acrobots (a 2-link arm), the cart-pole system (a cart with a pole on top), and Quadrotors. 
 
-# Acrobot
+# Introducing the systems
+
 The Acrobot is a 2-link arm with a motor at the elbow. Note that this is not just a double pendulum, because it assumes the arms are rigid.
 
 <p align="center">
   <img src="https://underactuated.csail.mit.edu/figures/acrobot.svg">
 </p>
+
+The cart-pole systems is basically an inverted pendulum. It is a cart
+(a double integrator) with a pole on top. The goal is to balance the pole on top of the cart.
+
+<p align="center">
+  <img src="https://underactuated.csail.mit.edu/figures/cartpole.svg">
+</p>
+
+The goal in both systems is to balance the mass at the top. 
+
+# Equations of Motion
+
+For all of these systems, they look pretty much the same:
+
+$$ M(q) \ddot q + C(q,\dot q) \dot q = \tau_g (q) + Bu $$
+
+| Symbol | Acrobot | Cart-pole |
+|---|---|---|
+| $ q $ | $ [\theta_1, \theta_2]^T $ | $ [x_{\text{cart}}, \theta_{\text{pole}}]^T $ |
+| $ \dot q $ | $ [\dot \theta_1, \dot \theta_2]^T $ | $ [\dot x, \dot \theta]^T $ |
+| B | $ [0, 1]^T $ | $ [1, 0]^T $ |
+| $ u $ | $ [\tau_{\text{elbow}}] $ | $ [F_{\text{cart}}] $ |
+| Constraints | $ \vert u \vert \leq u_{\max} $ | $ \vert u\vert \leq u_{\max} \;;\; \vert x \vert \leq x_{\max} $ |
 
