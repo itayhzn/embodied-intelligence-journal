@@ -71,9 +71,9 @@ Recall that LQR was for a linear system $ \dot x = Ax + Bu $, yet in the general
 
 To solve the general case, we will "linearize" the system by taking the Taylor approximation around a particular nominal fixed point $ (x_0, u_0) $, and then apply LQR to the linearized system: 
 
-$$ \dot x \approx f(x_0, u_0) + \left.\frac{\partial f}{\partial x}\right|_{(x_0, u_0)} \cdot (x-x_0) + \left.\frac{\partial f}{\partial u}\right|_{(x_0, u_0)} \cdot (u-u_0) $$
+$$ \dot x \approx f(x_0, u_0) + \left.\frac{\partial f}{\partial x}\right\vert_{(x_0, u_0)} \cdot (x-x_0) + \left.\frac{\partial f}{\partial u}\right\vert_{(x_0, u_0)} \cdot (u-u_0) $$
 
-If we define $ A = \left.\frac{\partial f}{\partial x}\right|_{(x_0, u_0)} $ and $ B = \left.\frac{\partial f}{\partial u}\right|_{(x_0, u_0)} $, we get:
+If we define $ A = \left.\frac{\partial f}{\partial x}\right\vert_{(x_0, u_0)} $ and $ B = \left.\frac{\partial f}{\partial u}\right\vert_{(x_0, u_0)} $, we get:
 
 $$ \dot x \approx Ax + Bu + \left[ f(x_0, u_0) - A x_0 - B -u_0 \right] $$
 
@@ -95,9 +95,9 @@ The stability of a linear system is determined by the eigenvalues of the matrix 
 > 
 > We will linearize this system about the upright position $ \theta = \pi,\; \dot \theta = 0,\; u = 0 $, that is: $ x_0 = [\pi, 0]^T,\; u_0 = 0 $. Not that in this point $ \dot\theta $ is indeed 0, i.e. this is a fixed point. The linearization will be:
 > 
-> $$ A = \left.\frac{\partial f}{\partial x}\right|_{(x_0, u_0)} = \left.\begin{bmatrix} 0 & 1 \\ -\frac{g}{\ell} \cos \theta & -\frac{b}{m\ell^2} \end{bmatrix}\right|_{(x_0, u_0)} = \begin{bmatrix} 0 & 1 \\ \frac{g}{\ell} & -\frac{b}{m\ell^2} \end{bmatrix} $$
+> $$ A = \left.\frac{\partial f}{\partial x}\right\vert_{(x_0, u_0)} = \left.\begin{bmatrix} 0 & 1 \\ -\frac{g}{\ell} \cos \theta & -\frac{b}{m\ell^2} \end{bmatrix}\right\vert_{(x_0, u_0)} = \begin{bmatrix} 0 & 1 \\ \frac{g}{\ell} & -\frac{b}{m\ell^2} \end{bmatrix} $$
 > 
-> $$ B = \left.\frac{\partial f}{\partial u}\right|_{(x_0, u_0)} = \begin{bmatrix} 0 \\ \frac{1}{m\ell^2} \end{bmatrix} $$
+> $$ B = \left.\frac{\partial f}{\partial u}\right\vert_{(x_0, u_0)} = \begin{bmatrix} 0 \\ \frac{1}{m\ell^2} \end{bmatrix} $$
 > 
 > Let's set $m = 1, \ell = 1, b = 0, g = 10$. We will then get:
 > 
