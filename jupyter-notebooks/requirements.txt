@@ -1,2 +1,3 @@
 drake
 underactuated==2025.1.3
+tqdm
