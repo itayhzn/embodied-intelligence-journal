@@ -73,7 +73,7 @@ In some way, minimum-time problems are like shortest-path problems (e.g. in grap
 ### Dynamic Programming
 Given discrete states $ s_i \in S $, discrete actions $ a_j \in A $, a transition/time function $ s[n+1] = f(s[n], a[n]) $, and an "edge cost" $ g(s,a) $, the total cost of some trajectory will be $ \sum_{n=0}^{N-1} g(s[n], a[n]) $.  The key idea here is that this is an **additive cost**. 
 
-For the *minimum time* cost, we can define the cost function as follows: $ g(s,a) = \mathbb{1}_{\{s \neq s_{\text{goal}}\}} $. This is the simplest cost function we can define for the minimum time problem.
+For the *minimum time* cost, we can define the cost function as follows: $ g(s,a) = 1 $ if $ s \neq s_{\text{goal}} $ , and $ g(s,a) = 0 $ otherwise. This is the simplest cost function we can define for the minimum time problem.
 
 DP is a recursive algorithm that solves "backwards from the goal". We define the **cost-to-go** function $ J^* (s) $ (in RL terminology, the **value function**) as the minimum cost-to-go from state $ s $ to the goal. The cost-to-go function is defined as follows:
 
