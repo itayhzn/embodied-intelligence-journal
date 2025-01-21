@@ -75,7 +75,7 @@ $$ K,S = \text{DiscountedLQR} (A,B,Q,R) = \text{LQR}(\sqrt \gamma A, B, Q, \frac
 
 $$ J^d_i = x_i ^T Q x_i + \hat u_i ^ T R \hat u_i  + \hat J_S (Ax_i + B \hat u_i) $$ 
 
-In the more general case, given $ \hat J_\alpha (x) , \; \ell(x,u), \; f(x,u)$, when can I solve $ \hat u_i $ in closed form? That is, when can I write $ \hat u_i = \text{argmin}_u \left[ \ell(x_i,u) + \hat J_\alpha (f(x_i,u)) \right] $ in closed form? 
+In the more general case, given $ \hat J_\alpha (x) , \; \ell(x,u), \; f(x,u)$, when can I solve $ \hat u_i = \text{argmin}_u \left[ \ell (x_i, u) + J (f(x_i , u))  \right] $ in closed form? 
 
 There are two elements in there, $\ell$ and $\hat J_\alpha$. 
 
