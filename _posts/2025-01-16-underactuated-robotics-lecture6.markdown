@@ -35,7 +35,7 @@ $$ \forall s\in S, \quad \hat J(s) = \min_{a\in A} \left[ \ell(s,a) + \hat J(f(s
 
 What is the extension of that to NNs? what would the value iteration update look like?
 
-The analogy is that we're basically going to take a bunch of sample points (because we can't easily evaluate for all $x$, but we can samply densly). [^1]
+The analogy is that we're basically going to take a bunch of sample points (because we can't easily evaluate for all $x$, but we can samply densely). [^1]
 
 A training iteration:
 
