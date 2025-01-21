@@ -110,9 +110,16 @@ Now, given the dynamics equation $ \dot{\bar x} = A \bar x + B \bar u $ and the 
 
 This also means that for any choice of $Q$ and $R$, we are guaranteed to find a $K$ that stabilizes the system! However, an interesting thing happens when we introduce discounting for future rewards (as is often done in RL). In some sense, this means we're optimistic about the system's ability to stabilize itself, and this makes guarantee (that for every $Q$ and $R$ there is a $K$) not hold anymore.
 
-> For the simple pendulum, a good choice would be $ Q = \begin{bmatrix} 10 & 0 \\ 0 & 1 \end{bmatrix} $ and $ R = [1] $. To understand why, think about the units of these entries. Since $Q$ is multiplied by $x^T$ and $x$, then the first entry of $Q$ is multiplied by $\theta$, i.e. will have units of $[\text{rad}]^2$, and the second entry is multiplied by $\dot \theta$, i.e. will have units of $[\text{rad/s}]^2$. So, we need the entries to "scale" then so they are roughly the same. And how can we go that? Well, $\text{rad/s}$ is pretty much $ \sqrt{g/\ell} $, so to scale correctly, we need to multiply the first entry by $ g / \ell \approx 10 $. This is a great rule of thumb! If your robot is about a meter long, use this matrix for $Q$.
+> For the simple pendulum, a good choice would be
 >
-> Similarly, for the double pendulum, a good choice would be $ Q = \begin{bmatrix} 10 & 0 & 0 & 0 \\ 0 & 10 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} $ and $ R = [1] $.
+> $$ Q = \begin{bmatrix} 10 & 0 \\ 0 & 1 \end{bmatrix} \;\;,\;\; R = [1] $$
+>
+> To understand why, think about the units of these entries. Since $Q$ is multiplied by $x^T$ and $x$, then the first entry of $Q$ is multiplied by $\theta$, i.e. will have units of $[\text{rad}]^2$, and the second entry is multiplied by $\dot \theta$, i.e. will have units of $[\text{rad/s}]^2$. So, we need the entries to "scale" then so they are roughly the same. And how can we go that? Well, $\text{rad/s}$ is pretty much $ \sqrt{g/\ell} $, so to scale correctly, we need to multiply the first entry by $ g / \ell \approx 10 $. This is a great rule of thumb! If your robot is about a meter long, use this matrix for $Q$.
+>
+> Similarly, for the double pendulum, a good choice would be 
+>
+> $$ Q = \begin{bmatrix} 10 & 0 & 0 & 0 \\ 0 & 10 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \;\;,\;\; R = [1] $$
+
 
 Interesting fact: LQR controllers are always stabilizing, but not all stabilizing controllers are LQR. This is because LQR controllers are linear, and a stabilizing controller might not be linear.
 

@@ -98,7 +98,9 @@ Notice that this function is convex in $u$, and thus to find the optimal $ u^* $
 
 $$ 0 = 2u + 2q + 2\sqrt 3 \dot q \implies u^* = - q -\sqrt 3 \dot q $$
 
-It is interesting to see that $ J^* (x) = x^T \begin{bmatrix} \sqrt 3 & 1 \\ 1 & \sqrt 3 \end{bmatrix} x $.
+It is interesting to see that
+
+$$ J^* (x) = x^T \begin{bmatrix} \sqrt 3 & 1 \\ 1 & \sqrt 3 \end{bmatrix} x $$
 
 # Linear Quadratic Regulator (LQR)
 
