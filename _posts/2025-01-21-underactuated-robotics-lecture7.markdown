@@ -15,4 +15,34 @@ categories: underactuated-robotics lecture
 
 > This is part of a series of posts on the course [MIT 6.8210: Underactuated Robotics](https://underactuated.csail.mit.edu/Spring2024/index.html) by [Prof. Russ Tedrake](https://locomotion.csail.mit.edu/russt.html). The goal is to document the key concepts and takeaways for future reference. These are <i>not</i> actual lecture notes, but a summary of the key points covered in the lecture and my thoughts on them. The official course material is available here: [lecture videos on Youtube](https://www.youtube.com/playlist?list=PLkx8KyIQkMfU5szP43GlE_S1QGSPQfL9s) \| [lecture notes](https://underactuated.csail.mit.edu)
 
-In the previous lecture, 
+In the previous lectures, we discussed DP and value iteration, and how to solve control problems using optimization. 
+
+A quick recap of the topics we discussed:
+ - DP in the tabular case, where everything is discrete and the problem is basically a graph search. We said that the na\'ive approximation for discretization doesn't scale very well.
+ - Linear dynamics and the convex cost case (LQR). We saw how linearinearizing the dynamics can work well around a fixed point, but not necessarily well for the whole state space.
+ - Approximate DP, with neurals nets in particular. The hope was that it could do some of the things discretization could do (i.e. the tabular case) but not suffer from the curse of dimensionality as much.
+ - All three approaches tried to compute $ J^* (x) $, the cost-to-go function.
+
+Today we will discuss Lyapunov functions, which are a different way to think about stability and control. The goal is to make the problem easier, in the sense that we need to compute a controller that's **not necessarily optimal** cost-to-go function, **but good enough**.
+In particular, we will show this through an example on the stability analysis of the simple pendulum/
+
+# Example: The Simple pendulum
+
+Recall, the simple pendulum is described by the following equations:
+
+$$
+  m \ell^2 \ddot{\theta} + mg\ell \sin \theta = - b \dot{\theta} ,\quad \text{where} \; b = 0
+$$
+
+First, observe that the damped pendulum has a stable fixed point at the bottom.
+
+**Proof**:
+- At the top, the energy is a combination of potential and kinetic energy: $ E = \frac{1}{2} m \ell^2 \dot \theta^2 - mg\ell\cos\theta $.
+- Consider how the energy evolves in time as a function of the state $x$, i.e. 
+
+$$ 
+\frac{dE(x)}{dt} = \frac{\partial E}{\partial x} \dot x = \frac{\partial E}{\partial \theta} \dot \theta + \frac{\partial E}{\partial \dot \theta} \ddot \theta = \dot\theta m g \ell \sin \theta + m \ell^2 \ddot \theta \dot \theta = \dot \theta \left( m g \ell \sin \theta + m \ell^2 \ddot \theta \right) = - b \dot \theta^2 
+$$
+
+- Since $ b > 0 $ and $ \dot \theta^2 \geq 0 $, then $ \frac{dE(x)}{dt} = -b\dot\theta^2 \leq 0$, i.e. the energy is always decreasing whenever $\dot\theta \neq 0$. Also, $E$ is bounded below by $-mg\ell$.
+- So what's left to prove is that the system doesn't get "stuck" somewhere along its way to the bottom, and it turns out that this is a little bit subtle, and this is what Lyapunov theory is all about.
