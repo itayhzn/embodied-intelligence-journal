@@ -46,3 +46,5 @@ $$
 
 - Since $ b > 0 $ and $ \dot \theta^2 \geq 0 $, then $ \frac{dE(x)}{dt} = -b\dot\theta^2 \leq 0$, i.e. the energy is always decreasing whenever $\dot\theta \neq 0$. Also, $E$ is bounded below by $-mg\ell$.
 - So what's left to prove is that the system doesn't get "stuck" somewhere along its way to the bottom, and it turns out that this is a little bit subtle, and this is what Lyapunov theory is all about.
+
+# Lyapunov Theory
