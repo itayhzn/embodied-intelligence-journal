@@ -72,7 +72,7 @@ If we can find such a function, then we can conclude that the system is stable i
 **Variations**:
 - For asymptotic stability, we need to show that $ V(x) $ is a **strictly decreasing function**, i.e. $ V \succ 0 $ and $ \dot V \prec 0 $
 - For global asymptotic stability (GAS), also requires that $ V(x) $ is a **radially unbounded function**, i.e. $ V(x) \to \infty $ as $ \Vert x \Vert \to \infty $.
-- For regional stability, we require that $V$ satisties the requirements above but only when limited to some region $ \mathcal{D} \subseteq \mathbb R^n $ that contains $x^*$ (namely, $ x^* \in \mathcal D $).
+- For regional stability, we require that $V$ satisties the requirements above but only when limited to some region $ \mathcal{D} \subseteq \mathbb R^n $ that contains $x^* $ (namely, $ x^* \in \mathcal D $).
 - For exponential stability, we require that $V \succ 0$ and that $ \dot V(x) \preceq -\alpha V(x) $ for some $ \alpha > 0 $.
 
 ### Some examples
@@ -94,12 +94,12 @@ $$ \dot V (x) = \begin{cases} 0 & , x=0 \\ >0 & , \vert x \vert > 1 \\ < 0 & , \
 
 ## General Form of ROAs (Regions of Attraction)
 
-If $ V(x) \succ 0$ and $ \dot V(x) \prec 0 $ for every $ x \in \{x \mid  V(x) \leq \rho \} $ (for some $ \rho > 0 $), 
+If $ V(x) \succ 0$ and $ \dot V(x) \prec 0 $ for every $ x \in \\{x \mid  V(x) \leq \rho \\} $ (for some $ \rho > 0 $), 
 then 
 
 $$ V(x(0)) \leq \rho \;\; \Rightarrow \;\;\left[ \lim_{t\to\infty} V(x(t)) = 0 \;\wedge \; \lim_{t\to\infty} x(t) = 0 \right]$$
 
-Furthermore, the **invariant set** $ \{x \mid  V(x) \leq \rho \} $ must be inside the region of attraction (ROA) of the fixed point $ x^* = 0 $.
+Furthermore, the **invariant set** $ \\{ x \mid  V(x) \leq \rho \\} $ must be inside the region of attraction (ROA) of the fixed point $ x^* = 0 $.
 
 > La Salles's Theorem gives a slightly stronger condition.
 
