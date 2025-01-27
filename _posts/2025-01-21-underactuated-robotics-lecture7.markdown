@@ -117,7 +117,7 @@ $$
  0 = \ell (x,\pi^*(x)) + \frac{\partial J^* }{\partial x} f(x,\pi^*(x))
 $$
 
-And since $ \frac{\partial J^* }{\partial x} f(x,\pi^*(x)) = \dot J^* (x) $, then we can write the above equation as: 
+And since $ \frac{\partial J^* }{\partial x} f(x,\pi^* (x)) = \dot J^* (x) $, then we can write the above equation as: 
 
 $$
 \dot J^* (x) = - \ell (x,\pi^*(x))
