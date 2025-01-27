@@ -48,3 +48,24 @@ $$
 - So what's left to prove is that the system doesn't get "stuck" somewhere along its way to the bottom, and it turns out that this is a little bit subtle, and this is what Lyapunov theory is all about.
 
 # Lyapunov Theory
+
+## Generalized Energy Functions
+
+Recall the definition of stable in the sense of Lyapunov (i.s.L.):
+$ x^* $ is stable i.s.L. if 
+
+$$ \forall \epsilon > 0 ,\; \exists \delta > 0 \; \text{s.t.}  \left[ 
+  (\Vert x(t=0)-x^* \Vert < \delta)
+  \;\; \Rightarrow \;\; 
+  (\forall t,\; \Vert x(t)-x^* \Vert < \epsilon) \right]$$
+
+Given some system $\dot x = f(x)$, we want to prove stability at $ x^* = 0 $. Note that we don't have a control input. To do this, we construct a differentiable function $ V(x) $ such that:
+ - $V \succ 0$ is a **positive definite function**: 
+   - $ V(0) = 0 $,
+   - $ V(x) > 0 $ for $ x \neq 0 $.
+ - $ \dot V \preceq 0 $ is a **negative semi-definite function**:
+   - $ \dot V(0) = 0 $,
+   - $ \dot V(x) \leq 0 $ for $ x \neq 0 $.
+
+If we can find such a function, then we can conclude that the system is stable i.s.L. (in the sense of Lyapunov) at $ x^* = 0 $, and $ V(x) $ is called a **Lyapunov function**.
+
