@@ -67,5 +67,43 @@ Given some system $\dot x = f(x)$, we want to prove stability at $ x^* = 0 $. No
    - $ \dot V(0) = 0 $,
    - $ \dot V(x) \leq 0 $ for $ x \neq 0 $.
 
-If we can find such a function, then we can conclude that the system is stable i.s.L. (in the sense of Lyapunov) at $ x^* = 0 $, and $ V(x) $ is called a **Lyapunov function**.
+If we can find such a function, then we can conclude that the system is stable i.s.L. at $ x^* = 0 $, and $ V(x) $ is called a **Lyapunov function**.
 
+**Variations**:
+- For asymptotic stability, we need to show that $ V(x) $ is a **strictly decreasing function**, i.e. $ V \succ 0 $ and $ \dot V \prec 0 $
+- For global asymptotic stability (GAS), also requires that $ V(x) $ is a **radially unbounded function**, i.e. $ V(x) \to \infty $ as $ \Vert x \Vert \to \infty $.
+- For regional stability, we require that $V$ satisties the requirements above but only when limited to some region $ \mathcal{D} \subseteq \mathbb R^n $ that contains $x^*$ (namely, $ x^* \in \mathcal D $).
+- For exponential stability, we require that $V \succ 0$ and that $ \dot V(x) \preceq -\alpha V(x) $ for some $ \alpha > 0 $.
+
+### Some examples
+
+#### The simple pendulum
+In the example of the simple pendulum, we can define $ V(x) = E(x) + mg\ell $, which is a Lyapunov function, and hence the simple pendulum is stable i.s.L. at $ x^* = 0 $.
+
+#### A simple linear system
+Consider the system $ \dot x = -x $. We can define $ V(x) = x^2 $, which is a Lyapunov function, and hence the system is stable i.s.L. at $ x^* = 0 $. Observe that $ \dot V (x) = \frac{\partial V}{\partial x} \cdot \dot x = 2x \cdot -x = -2x^2 \leq 0 $. Therefore:
+ - The system is stable i.s.L. since $ V \succ 0 $ and $ \dot V \preceq 0 $.
+ - The system is asymptotically stable since $ V \succ 0 $ and $ \dot V \prec 0 $.
+ - The system is exponentially stable since $ V \succ 0 $ and $ \dot V \preceq -2V $.
+ - The system is globally asymptotically stable since $ V \to \infty $ as $ \Vert x \Vert \to \infty $. [^1]
+
+#### A simple non-linear system
+Consider the system $ \dot x = f(x) = -x + x^3 $. If we plot $ f(x) $ vs $x$, we find that $ x^* = 0$ is a fixed point with region of attraction $ x \in (-1, 1) $.[^2] To prove that, we can define $ V(x) = x^2 $. If we do the math, we find that $ \dot V(x) = -2x^2 + 2x^4 = 2x^2(x^2-1) $. Observe that:
+
+$$ \dot V (x) = \begin{cases} 0 & , x=0 \\ >0 & , \vert x \vert > 1 \\ < 0 & , \vert x \vert < 1\end{cases} $$
+
+## General Form of ROAs (Regions of Attraction)
+
+If $ V(x) \succ 0$, $ \dot V(x) \prec 0 $, and $ \forall x \in \left\{x \mid  V(x) \leq \rho \right\} $ for some $ \rho > 0 $, 
+then 
+
+$$ V(x(0)) \leq \rho \;\; \Rightarrow \;\;\left[ \lim_{t\to\infty} V(x(t)) = 0 \;\wedge \; \lim_{t\to\infty} x(t) = 0 \right]$$
+
+Furthermore, the set $ \left\{x \mid  V(x) \leq \rho \right\} $ must be inside the region of attraction (ROA) of the fixed point $ x^* = 0 $.
+
+ <br><br><br>
+
+ -----
+ [^1] If a linear system is stable, then it is always globally asymptotically stable. This is a special property of linear systems.
+
+ [^2] Regions of attraction are always open sets.
