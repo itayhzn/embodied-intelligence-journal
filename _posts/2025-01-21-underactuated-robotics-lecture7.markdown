@@ -94,12 +94,12 @@ $$ \dot V (x) = \begin{cases} 0 & , x=0 \\ >0 & , \vert x \vert > 1 \\ < 0 & , \
 
 ## General Form of ROAs (Regions of Attraction)
 
-If $ V(x) \succ 0$ and $ \dot V(x) \prec 0 $ for every $ x \in \left\{x \mid  V(x) \leq \rho \right\} $ (for some $ \rho > 0 $), 
+If $ V(x) \succ 0$ and $ \dot V(x) \prec 0 $ for every $ x \in \{x \mid  V(x) \leq \rho \} $ (for some $ \rho > 0 $), 
 then 
 
 $$ V(x(0)) \leq \rho \;\; \Rightarrow \;\;\left[ \lim_{t\to\infty} V(x(t)) = 0 \;\wedge \; \lim_{t\to\infty} x(t) = 0 \right]$$
 
-Furthermore, the **invariant set** $ \left\{x \mid  V(x) \leq \rho \right\} $ must be inside the region of attraction (ROA) of the fixed point $ x^* = 0 $.
+Furthermore, the **invariant set** $ \{x \mid  V(x) \leq \rho \} $ must be inside the region of attraction (ROA) of the fixed point $ x^* = 0 $.
 
 > La Salles's Theorem gives a slightly stronger condition.
 
