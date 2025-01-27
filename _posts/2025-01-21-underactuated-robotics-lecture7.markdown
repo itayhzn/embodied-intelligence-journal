@@ -94,12 +94,36 @@ $$ \dot V (x) = \begin{cases} 0 & , x=0 \\ >0 & , \vert x \vert > 1 \\ < 0 & , \
 
 ## General Form of ROAs (Regions of Attraction)
 
-If $ V(x) \succ 0$, $ \dot V(x) \prec 0 $, and $ \forall x \in \left\{x \mid  V(x) \leq \rho \right\} $ for some $ \rho > 0 $, 
+If $ V(x) \succ 0$ and $ \dot V(x) \prec 0 $ for every $ x \in \left\{x \mid  V(x) \leq \rho \right\} $ (for some $ \rho > 0 $), 
 then 
 
 $$ V(x(0)) \leq \rho \;\; \Rightarrow \;\;\left[ \lim_{t\to\infty} V(x(t)) = 0 \;\wedge \; \lim_{t\to\infty} x(t) = 0 \right]$$
 
-Furthermore, the set $ \left\{x \mid  V(x) \leq \rho \right\} $ must be inside the region of attraction (ROA) of the fixed point $ x^* = 0 $.
+Furthermore, the **invariant set** $ \left\{x \mid  V(x) \leq \rho \right\} $ must be inside the region of attraction (ROA) of the fixed point $ x^* = 0 $.
+
+> La Salles's Theorem gives a slightly stronger condition.
+
+# Lyapunov Functions and Control
+
+How does Lyapunov relate to dynamic programming? 
+
+Recall that in (continuous time) DP, the Hamilton-Jacobi-Bellman (HJB) equation we're trying to solve is:
+
+$$ \min_u \left[ \ell (x,u) + \frac{\partial J^* }{\partial x} f(x,u) \right] = 0 $$
+
+Recall that Lyapunov functions don't take control inputs into account. So, how do we relate the two? If the optimal policy $ \pi^* $ is a function of $ x $, then for $ \pi^* $:
+
+$$ 
+ 0 = \ell (x,\pi^*(x)) + \frac{\partial J^* }{\partial x} f(x,\pi^*(x))
+$$
+
+And since $ \frac{\partial J^* }{\partial x} f(x,\pi^*(x)) = \dot J^* (x) $, then we can write the above equation as: 
+
+$$
+\dot J^* (x) = - \ell (x,\pi^*(x))
+$$
+
+Let's compare that with the Lyapunov condition $ \dot V(x) \preceq 0 $. If $\ell > 0$ everywhere, then choosing $ V(x) = J^* (x) $ is a Lyapunov function. But the more interesting perspective is that a Lyapunov function is a relaxation of the HJB cost-to-go function.
 
  <br><br><br>
 
