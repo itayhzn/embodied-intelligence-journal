@@ -126,4 +126,4 @@ And if we find such a $P$, then we have a certificate that the system is stable,
 
 [^1]: More generally, we can use a neural network to represent the Lyapunov function, and people actually do Lyapunov-stable NN. However, the more complex the function, the harder it is to achieve a certificate that the Lyapunov conditions are satisfied $ \forall x $.
 
-[^2] If the system is stable, you can pick any $ Q \succeq 0 $ and solve the *Lyapunov equation* $ A^T P + PA = -Q $ to find a Lyapunov function.
+[^2]: If the system is stable, you can pick any $ Q \succeq 0 $ and solve the *Lyapunov equation* $ A^T P + PA = -Q $ to find a Lyapunov function.
