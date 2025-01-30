@@ -42,3 +42,77 @@ A nice observation is that since robot dynamics are rigid and preserve Euclidean
 
 Recall that we defined SDP as: linear objective + linear constraints + positive semidefinite constraints. 
 There is a generalization of SDP called *sum-of-squares programming* (SOS) where: linear objective + linear constraints + PSD constraints + SOS constraints (e.g. $ P_\alpha (x)$ is SOS).
+
+
+## Using convex optimization to solve non-convex problems
+
+Convex optimization doesn't solve everything, because some problems aren't convex. However, the real convex optimization experts know how to work around this limitation.
+
+A nice example is the six-hump camel function: $ p(x,y) = 4x^2 - 2.1x^4 + \frac{x^6}{3} + xy - 4y^2 + 4y^4 $. This function is clearly non-convex, and has six local minima and one global minimum. 
+
+<p align="center">
+  <img src="https://gael-varoquaux.info/scipy-lecture-notes/_images/sphx_glr_plot_2d_minimization_002.png" />
+</p>
+
+To solve this problem, we solve the following optimization problem:
+
+$$ \min_\gamma -\gamma \quad \text{subject to} \quad p(x,y)-\gamma \text{ is SOS} $$
+
+That is, we find the smallest $\gamma$ such that if we shift the function by $\gamma$, the function will be positive everywhere (i.e. SOS).
+
+> Note that the alternative optimization problem we defined finds the minimum value $\gamma$ of $p$, but not the minimizer $(x^*, y^*)$. Finding the minimizer requires a few additional tricks, namely going through the dual problem.
+
+The general idea here was to take a class of functions that is guaranteed to be positive, and try to make our function as close to that class as possible. We can apply the same idea to neural networks. 
+
+#### Doing the same, but with neural networks
+
+Suppose again that you want to prove that $ \forall x \; f(x) \geq 0$. We can try to approximate $f$ using a NN in the following way:
+
+$$
+  \min_{\text{NN}} \left\Vert f(x) - \text{NN}^T(x) \cdot \text{NN}(x) \right\Vert,
+$$
+
+where $\text{NN}(x)$ is a neural network. Note that we multiply the neural network by its transpose to guarantee it is positive.
+
+## Back to Lyapunov Functions
+
+In Lyapunov analysis, we get to choose $V(x)$ to be whatever we want, so let's choose it to be polynomial. Also, assume that our dynamics $ \dot x = f(x) $ are restricted to be polynomial. Therefore, $ \dot V(x) = \frac{\partial V}{\partial x} \cdot f(x) $ is also polynomial.
+
+The Lyapunov conditions are them translated to SOS constraints: $V$ is SOS, and $- \dot V$ is SOS.
+
+### Example
+
+Suppose we have the following two dimensional system: 
+
+$$ 
+  \dot x_1 = -x_1 +2x_2^2 \quad \text{and} \quad \dot x_2 = -x_2 - x_1 x_2 -2x_2^3.
+$$
+
+It is known that the following SOS function is a Lyapunov function for this system: $ V(x) = x_1^2 +2x_2^2 $. The only question now is whether $ -\dot V$ is also SOS. If it is, then we have a certificate that the system is stable.
+
+### Regions of Attraction: The $S$-Procedure
+
+In the examples above, we used SOS optimization as some kind of oracle that replies either yes or no to the following type of question: "Is $p(x) \geq 0$ for all $x \in \mathbb R ^n$?". To test whether some $\mathcal D \subset \mathbb R^n$ is a region of attraction, we need to be able to ask our oracle: "Is $p(x) \geq 0$ for all $x \in \mathcal D$?".
+
+To do so, we need to come up with a modification to $p$ that is equal to $p$ on $\mathcal D$ and is trivially positive outside $\mathcal D$. Then, we can ask our oracle whether this modified function is SOS, and if it is, then $\mathcal D$ is a region of attraction. This is a bit tricky, though, because we want the modified function to be differentiable.
+
+First, assume $\mathcal D$ using a polynomial constraint $g(x)$, i.e., consider $\mathcal D \triangleq \\{x \mid g(x) \leq 0\\} $. Now, we ask the oracle the following question:
+
+$$
+  \text{find } \alpha \text{ such that } p(x) + \lambda_\alpha^T (x) g(x) \text{ is SOS, and } \lambda_\alpha (x) \text{ is SOS}.
+$$
+
+$\lambda_\alpha$ is similar to a Lagrange multiplier, but with a whole polynomial of finite degree as our multiplier: $ \lambda_\alpha(x) = \sum_i^N \alpha_i x^i $.
+
+Why does that make sense? Since we constrained $\lambda_\alpha (x)$ to be SOS, then it is always non-negative. Now consider the following cases:
+
+- $ x \in \mathcal D$: this is the region where $g(x)\leq 0$, thus $ \lambda_\alpha (x) g(x) \leq 0 $. This means that $p(x) + \lambda_\alpha (x) g(x) \leq p(x)$. And if we are able to prove that the lefthand side is SOS, then we have a certificate that $p(x) \geq 0$ in $\mathcal D$. 
+
+- $ x \notin \mathcal D$: In this case, $g(x) > 0$, and therefore $ \lambda_\alpha (x) g(x) > 0$. This means that $p(x) + \lambda_\alpha (x) g(x) > p(x)$. That is, we have added some positive terms to $p$ outside $\mathcal D$ to ensure it is also positive there (so that the oracle can answer $\forall x\in \mathbb R^n$).
+
+> If $\mathcal D = \\{ x \mid g(x) = 0 \\}$, then we have even more tools, because the problem has gone from semi-algebraic geometry to algebraic geometry. In our case, we can drop the second constraint and just solve:
+>
+> $$
+  \text{find } \alpha \text{ such that } p(x) + \lambda_\alpha^T (x) g(x) \text{ is SOS, and } \lambda_\alpha(x) \text{ can be arbitrary}.
+$$
+
