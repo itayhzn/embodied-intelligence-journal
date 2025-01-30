@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Underactuated Robotics - Lecture 2
+title:  Underactuated Robotics - Lecture 2 -  Nonlinear Dynamics
 date:   2025-01-09 15:59:00 +0200
 categories: underactuated-robotics lecture
 ---

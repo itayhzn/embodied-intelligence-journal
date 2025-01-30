@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Underactuated Robotics - Lecture 7
+title:  Underactuated Robotics - Lecture 7 - Lyapunov Analysis (1)
 date:   2025-01-21 17:59:00 +0200
 categories: underactuated-robotics lecture
 ---

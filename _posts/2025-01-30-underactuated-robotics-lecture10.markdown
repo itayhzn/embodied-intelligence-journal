@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Underactuated Robotics - Lecture 10
+title:  Underactuated Robotics - Lecture 10 - Trajectory Optimization (1)
 date:   2025-01-30 16:15:00 +0200
 categories: underactuated-robotics lecture
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Underactuated Robotics - Lecture 3
+title:  Underactuated Robotics - Lecture 3 - Dynamic Programming (1)
 date:   2025-01-12 13:49:00 +0200
 categories: underactuated-robotics lecture
 ---

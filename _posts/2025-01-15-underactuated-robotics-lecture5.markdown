@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Underactuated Robotics - Lecture 5
+title:  Underactuated Robotics - Lecture 5 - Acrobots and Cart-Pole Systems
 date:   2025-01-15 17:35:00 +0200
 categories: underactuated-robotics lecture
 ---
