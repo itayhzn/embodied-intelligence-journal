@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Underactuated Robotics - Lecture 12 - Trajectory Stabilization
-date:   2025-02-03 14:11:00 +0200
+date:   2025-02-03 14:10:00 +0200
 categories: underactuated-robotics lecture
 ---
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
